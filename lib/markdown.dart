@@ -93,6 +93,7 @@ export 'src/inline_syntaxes/sub_syntax.dart';
 export 'src/inline_syntaxes/sup_syntax.dart';
 export 'src/inline_syntaxes/tag_syntax.dart';
 export 'src/inline_syntaxes/text_syntax.dart';
+export 'src/inline_syntaxes/than_syntax.dart';
 export 'src/inline_syntaxes/underline_syntax.dart';
 
 const version = packageVersion;
