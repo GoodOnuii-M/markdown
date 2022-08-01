@@ -6,7 +6,6 @@ class FencedBoxBlockSyntax extends BlockSyntax {
 
   @override
   RegExp get pattern => boxFencePattern;
-  final _boxTypePattern = RegExp('(boxed|voca|checked)(.*)');
   final fencePattern = RegExp(r'^(\:{3,3})(.*)$');
 
   @override
@@ -55,17 +54,11 @@ class FencedBoxBlockSyntax extends BlockSyntax {
     /// 박스 정보 문자열
     final boxInfo = match.group(2) ?? '';
 
-    /// 박스 정보 매치
-    final boxInfoMatch = _boxTypePattern.firstMatch(boxInfo);
-
     /// 박스 타입 boxed | checked | voca
-    final boxType = boxInfoMatch?.group(1) ?? '';
+    final boxType = boxInfo;
 
     /// 박스 라벨 [label]
-    final label = (boxInfoMatch?.group(2)?.isEmpty ?? true)
-        ? null
-        : boxInfoMatch!.group(2);
-
+    final label = match.group(3);
     final parsedChildlines = parseChildLines(parser, endBlock);
 
     final childrenLines = parsedChildlines
