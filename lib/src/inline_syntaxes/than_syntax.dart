@@ -2,8 +2,10 @@ import 'package:markdown/src/ast.dart';
 import 'package:markdown/src/inline_parser.dart';
 import 'package:markdown/src/inline_syntaxes/inline_syntax.dart';
 
-class SubInlineSyntax extends InlineSyntax {
-  SubInlineSyntax() : super('<(?:sub|SUB)>(.*?)</(?:sub|SUB)>');
+class ThanInlineSyntax extends InlineSyntax {
+  ThanInlineSyntax() : super('($_lessThan|$_greaterThan)');
+  static const _lessThan = '&lt';
+  static const _greaterThan = '&lt';
 
   @override
   bool onMatch(InlineParser parser, Match match) {
@@ -14,10 +16,7 @@ class SubInlineSyntax extends InlineSyntax {
 
       /// Element tex 태그 부착
       parser.addNode(
-        Element.text(
-          'sub',
-          matchedString,
-        ),
+        Text(matchedString == _lessThan ? '<' : '>'),
       );
     }
     return hasMatch;

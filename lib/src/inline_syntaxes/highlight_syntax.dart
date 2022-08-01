@@ -3,7 +3,7 @@ import 'package:markdown/src/inline_parser.dart';
 import 'package:markdown/src/inline_syntaxes/inline_syntax.dart';
 
 class HighlightInlineSyntax extends InlineSyntax {
-  HighlightInlineSyntax() : super('<mark>(.*?)</mark>');
+  HighlightInlineSyntax() : super('<(?:mark|MARK)>(.*?)</(?:mark|MARK)>');
 
   @override
   bool onMatch(InlineParser parser, Match match) {

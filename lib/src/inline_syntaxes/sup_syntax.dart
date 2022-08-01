@@ -3,7 +3,7 @@ import 'package:markdown/src/inline_parser.dart';
 import 'package:markdown/src/inline_syntaxes/inline_syntax.dart';
 
 class SupInlineSyntax extends InlineSyntax {
-  SupInlineSyntax() : super('<sup>(.*?)</sup>');
+  SupInlineSyntax() : super('<(?:sup|SUP)>(.*?)</(?:sup|SUP)>');
 
   @override
   bool onMatch(InlineParser parser, Match match) {
