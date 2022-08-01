@@ -4,8 +4,8 @@ import 'package:markdown/src/inline_syntaxes/inline_syntax.dart';
 
 class ThanInlineSyntax extends InlineSyntax {
   ThanInlineSyntax() : super('($_lessThan|$_greaterThan)');
-  static const _lessThan = '&lt';
-  static const _greaterThan = '&lt';
+  static const _lessThan = '&lt;';
+  static const _greaterThan = '&gt';
 
   @override
   bool onMatch(InlineParser parser, Match match) {

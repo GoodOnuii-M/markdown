@@ -52,10 +52,10 @@ class InlineParser {
     TextSyntax('&[#a-zA-Z0-9]*;', startCharacter: $ampersand),
     // Encode "&".
     TextSyntax('&', sub: '&amp;', startCharacter: $ampersand),
-    // Encode "<".
-    TextSyntax('<', sub: '&lt;', startCharacter: $lt),
-    // Encode ">".
-    TextSyntax('>', sub: '&gt;', startCharacter: $gt),
+    // // Encode "<".
+    // TextSyntax('<', sub: '&lt;', startCharacter: $lt),
+    // // Encode ">".
+    // TextSyntax('>', sub: '&gt;', startCharacter: $gt),
   ]);
 
   /// The string of Markdown being parsed.
