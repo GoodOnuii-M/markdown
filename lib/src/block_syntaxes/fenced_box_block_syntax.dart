@@ -58,7 +58,7 @@ class FencedBoxBlockSyntax extends BlockSyntax {
     final boxType = boxInfo;
 
     /// 박스 라벨 [label]
-    final label = match.group(3);
+    final label = match.groupCount < 3 ? null : match.group(3);
     final parsedChildlines = parseChildLines(parser, endBlock);
 
     final childrenLines = parsedChildlines
