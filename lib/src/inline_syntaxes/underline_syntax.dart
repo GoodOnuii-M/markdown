@@ -1,7 +1,7 @@
 import 'package:markdown/markdown.dart';
 
 class UnderlineInlineSyntax extends InlineSyntax {
-  UnderlineInlineSyntax() : super('<u>(.*?)</u>');
+  UnderlineInlineSyntax() : super('<(?:u|U)>(.*?)</(?:u|U)>');
 
   @override
   bool onMatch(InlineParser parser, Match match) {

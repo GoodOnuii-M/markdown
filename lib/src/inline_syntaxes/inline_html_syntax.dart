@@ -23,7 +23,7 @@ class InlineHtmlSyntax extends TextSyntax {
           r'<[/!?]?[A-Za-z][A-Za-z0-9-]*(?:\s[^>]*)?>',
           startCharacter: $lt,
         );
-  final brPattern = RegExp('<br>');
+  final brPattern = RegExp('<(?:br|BR)>');
   @override
   bool onMatch(InlineParser parser, Match match) {
     if (brPattern.firstMatch(match.match) != null) {
