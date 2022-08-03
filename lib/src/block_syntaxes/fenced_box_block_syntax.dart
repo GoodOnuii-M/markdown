@@ -55,7 +55,6 @@ class FencedBoxBlockSyntax extends BlockSyntax {
 
     /// 박스 정보 문자열
     final boxInfo = match.group(2) ?? '';
-    print(match.group(0));
 
     /// 박스 타입 boxed | checked | voca
     final boxType = boxInfo;
