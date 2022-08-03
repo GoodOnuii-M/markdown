@@ -29,7 +29,7 @@ final texFencePattern = RegExp(r'^[ ]{0,3}(\${2,})$');
 /// Fenced blockquotes.
 final blockquoteFencePattern = RegExp(r'^>{3}\s*$');
 
-final largeBoxFencePattern = RegExp(r'^(\:{4,4})(.*)$');
+final largeBoxFencePattern = RegExp(r'^(\:{4,4})(boxed|voca|checked)(.*)$');
 
 final boxFencePattern = RegExp(r'^(\:{3,3})(boxed|voca|checked)(.*)$');
 

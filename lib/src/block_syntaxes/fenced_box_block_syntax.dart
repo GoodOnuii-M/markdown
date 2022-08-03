@@ -6,7 +6,9 @@ class FencedBoxBlockSyntax extends BlockSyntax {
 
   @override
   RegExp get pattern => boxFencePattern;
-  final fencePattern = RegExp(r'^(\:{3,3})(.*)$');
+  late final fencePattern = pattern == boxFencePattern
+      ? RegExp(r'^(\:{3,3})(.*)$')
+      : RegExp(r'^(\:{4,4})(.*)$');
 
   @override
   List<String?> parseChildLines(BlockParser parser, [String? endBlock]) {
@@ -53,12 +55,13 @@ class FencedBoxBlockSyntax extends BlockSyntax {
 
     /// 박스 정보 문자열
     final boxInfo = match.group(2) ?? '';
+    print(match.group(0));
 
     /// 박스 타입 boxed | checked | voca
     final boxType = boxInfo;
 
     /// 박스 라벨 [label]
-    final label = match.groupCount < 3 ? null : match.group(3);
+    final label = (match.groupCount < 3 ? null : match.group(3)) ?? '';
     final parsedChildlines = parseChildLines(parser, endBlock);
 
     final childrenLines = parsedChildlines
@@ -86,7 +89,7 @@ class FencedBoxBlockSyntax extends BlockSyntax {
     }
 
     /// 라벨에서 '[' ']' 제거
-    if (label != null) {
+    if (label.trim().isNotEmpty) {
       element.attributes['label'] =
           label.replaceAll('[', '').replaceAll(']', "");
     }
