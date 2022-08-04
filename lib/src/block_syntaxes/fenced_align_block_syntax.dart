@@ -63,8 +63,6 @@ class FencedAlignBlockSyntax extends BlockSyntax {
 
     final nodes = BlockParser(childrenLines, parser.document).parseLines();
 
-    print(nodes);
-
     return element..children?.addAll(nodes);
   }
 }
