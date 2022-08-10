@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:markdown/markdown.dart';
-import 'package:markdown/src/document.dart';
 import 'package:test/test.dart';
 
 void main() {

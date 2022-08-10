@@ -8,7 +8,7 @@ import 'inline_syntax.dart';
 
 /// Represents a hard line break.
 class LineBreakSyntax extends InlineSyntax {
-  LineBreakSyntax() : super(r'(?:\\|  +)\n');
+  LineBreakSyntax() : super('<(?:br|BR)>');
 
   /// Create a void <br> element.
   @override
