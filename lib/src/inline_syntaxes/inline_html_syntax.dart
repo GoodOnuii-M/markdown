@@ -3,10 +3,7 @@
 // BSD-style license that can be found in the LICENSE file.
 import 'package:markdown/src/inline_syntaxes/text_syntax.dart';
 
-import '../ast.dart';
 import '../charcode.dart';
-import '../inline_parser.dart';
-import '../util.dart';
 
 /// Leave inline HTML tags alone, from
 /// [CommonMark 0.28](http://spec.commonmark.org/0.28/#raw-html).
@@ -23,14 +20,4 @@ class InlineHtmlSyntax extends TextSyntax {
           r'<[/!?]?[A-Za-z][A-Za-z0-9-]*(?:\s[^>]*)?>',
           startCharacter: $lt,
         );
-  final brPattern = RegExp('<(?:br|BR)>');
-  @override
-  bool onMatch(InlineParser parser, Match match) {
-    if (brPattern.firstMatch(match.match) != null) {
-      parser.addNode(Element.empty('br'));
-      return true;
-    }
-
-    return super.onMatch(parser, match);
-  }
 }
