@@ -17,7 +17,7 @@ import 'inline_syntaxes/image_syntax.dart';
 import 'inline_syntaxes/inline_syntax.dart';
 import 'inline_syntaxes/line_break_syntax.dart';
 import 'inline_syntaxes/link_syntax.dart';
-import 'inline_syntaxes/non_breaking_space_syntax.dart';
+// import 'inline_syntaxes/non_breaking_space_syntax.dart';
 import 'inline_syntaxes/text_syntax.dart';
 
 /// Maintains the internal state needed to parse inline span elements in
@@ -39,7 +39,7 @@ class InlineParser {
     // Parse "__strong__" and "_emphasis_" tags.
     EmphasisSyntax.underscore(),
     CodeSyntax(),
-    NonBreakingSpace(),
+    // NonBreakingSpace(),
     ThanInlineSyntax(),
 
     // We will add the LinkSyntax once we know about the specific link resolver.
@@ -51,7 +51,7 @@ class InlineParser {
     // "&amp;" into "&amp;amp;"
     TextSyntax('&[#a-zA-Z0-9]*;', startCharacter: $ampersand),
     // Encode "&".
-    TextSyntax('&', sub: '&amp;', startCharacter: $ampersand),
+    // TextSyntax('&', sub: '&amp;', startCharacter: $ampersand),
     // // Encode "<".
     // TextSyntax('<', sub: '&lt;', startCharacter: $lt),
     // // Encode ">".
