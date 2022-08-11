@@ -50,6 +50,7 @@ export 'src/block_syntaxes/fenced_blockquote_syntax.dart';
 export 'src/block_syntaxes/fenced_box_block_syntax.dart';
 export 'src/block_syntaxes/fenced_code_block_syntax.dart';
 export 'src/block_syntaxes/fenced_large_box_block_syntax.dart';
+export 'src/block_syntaxes/fenced_large_tex_block_syntax.dart';
 export 'src/block_syntaxes/fenced_tex_block_syntax.dart';
 export 'src/block_syntaxes/header_syntax.dart';
 export 'src/block_syntaxes/header_with_id_syntax.dart';
