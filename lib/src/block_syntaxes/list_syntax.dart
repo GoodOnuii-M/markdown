@@ -4,10 +4,7 @@
 
 import 'package:markdown/markdown.dart';
 
-import '../ast.dart';
-import '../block_parser.dart';
 import '../patterns.dart';
-import 'block_syntax.dart';
 
 class ListItem {
   ListItem(this.lines);

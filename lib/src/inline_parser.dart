@@ -4,21 +4,7 @@
 
 import 'package:markdown/markdown.dart';
 
-import 'ast.dart';
 import 'charcode.dart';
-import 'document.dart';
-import 'inline_syntaxes/autolink_syntax.dart';
-import 'inline_syntaxes/code_syntax.dart';
-import 'inline_syntaxes/delimiter_syntax.dart';
-import 'inline_syntaxes/email_autolink_syntax.dart';
-import 'inline_syntaxes/emphasis_syntax.dart';
-import 'inline_syntaxes/escape_syntax.dart';
-import 'inline_syntaxes/image_syntax.dart';
-import 'inline_syntaxes/inline_syntax.dart';
-import 'inline_syntaxes/line_break_syntax.dart';
-import 'inline_syntaxes/link_syntax.dart';
-// import 'inline_syntaxes/non_breaking_space_syntax.dart';
-import 'inline_syntaxes/text_syntax.dart';
 
 /// Maintains the internal state needed to parse inline span elements in
 /// Markdown.
@@ -39,7 +25,7 @@ class InlineParser {
     // Parse "__strong__" and "_emphasis_" tags.
     EmphasisSyntax.underscore(),
     CodeSyntax(),
-    // NonBreakingSpace(),
+    SpaceSyntax(),
     ThanInlineSyntax(),
 
     // We will add the LinkSyntax once we know about the specific link resolver.
