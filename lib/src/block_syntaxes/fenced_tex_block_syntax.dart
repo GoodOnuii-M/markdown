@@ -5,6 +5,7 @@
 import '../ast.dart';
 import '../block_parser.dart';
 // import '../charcode.dart';
+import '../line.dart';
 import '../patterns.dart';
 import 'block_syntax.dart';
 
@@ -13,11 +14,11 @@ class FencedTexBlockSyntax extends BlockSyntax {
 
   /// 블록 하위 문장 파싱
   @override
-  List<String> parseChildLines(BlockParser parser, [String? endBlock]) {
+  List<Line> parseChildLines(BlockParser parser, [String? endBlock]) {
     endBlock ??= '';
 
     /// 블록 하위 문장 리스트
-    final childLines = <String>[];
+    final childLines = <Line>[];
 
     /// 포지션을 다음 라인으로 이동시키기
     parser.advance();
@@ -25,7 +26,7 @@ class FencedTexBlockSyntax extends BlockSyntax {
     /// 파싱이 끝날때까지
     while (!parser.isDone) {
       /// 현재 라인에 같은 패턴이 존재하는 확인
-      final match = pattern.firstMatch(parser.current);
+      final match = pattern.firstMatch(parser.current.content);
 
       /// 같은 패턴이 존재하지 않거나 $$으로 시작하지 않는다
       if (match == null || !match[1]!.startsWith(endBlock)) {
@@ -48,7 +49,7 @@ class FencedTexBlockSyntax extends BlockSyntax {
   @override
   Node parse(BlockParser parser) {
     /// canParse 조건을 만족한 라인 매치 결과
-    final match = pattern.firstMatch(parser.current)!;
+    final match = pattern.firstMatch(parser.current.content)!;
 
     /// 캡처그룹 1번 ($$)
     final endBlock = match.group(1);

@@ -9,11 +9,11 @@ class FencedAlignBlockSyntax extends BlockSyntax {
   final fencePattern = RegExp(r'^(\:{3,3})(.*)$');
 
   @override
-  List<String?> parseChildLines(BlockParser parser, [String? endBlock]) {
+  List<Line?> parseChildLines(BlockParser parser, [String? endBlock]) {
     endBlock ??= '';
 
     /// 블록 하위 문장 리스트
-    final childLines = <String>[];
+    final childLines = <Line>[];
 
     /// 포지션을 다음 라인으로 이동시키기
     parser.advance();
@@ -21,7 +21,7 @@ class FencedAlignBlockSyntax extends BlockSyntax {
     /// 파싱이 끝날때까지
     while (!parser.isDone) {
       /// 현재 라인에 같은 패턴이 존재하는 확인
-      final match = fencePattern.firstMatch(parser.current);
+      final match = fencePattern.firstMatch(parser.current.content);
 
       /// 같은 패턴이 존재하지 않거나 :::으로 시작하지 않는다
       if (match == null || !match[1]!.startsWith(endBlock)) {
@@ -44,7 +44,7 @@ class FencedAlignBlockSyntax extends BlockSyntax {
   @override
   Node parse(BlockParser parser) {
     /// canParse 조건을 만족한 라인 매치 결과
-    final match = pattern.firstMatch(parser.current)!;
+    final match = pattern.firstMatch(parser.current.content)!;
 
     /// 블록 끝 문자열 :::
     final endBlock = match.group(1);
@@ -58,7 +58,7 @@ class FencedAlignBlockSyntax extends BlockSyntax {
 
     final childrenLines = parsedChildlines
         .where((element) => element != null)
-        .cast<String>()
+        .cast<Line>()
         .toList();
 
     final nodes = BlockParser(childrenLines, parser.document).parseLines();

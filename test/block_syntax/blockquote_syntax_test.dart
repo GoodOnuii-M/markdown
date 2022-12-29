@@ -37,7 +37,7 @@ void main() {
       //   }
       // }
 
-      final lines = LineSplitter.split(data).toList();
+      final lines = LineSplitter.split(data).cast<Line>().toList();
 
       final nodes = BlockParser(lines, document).parseLines();
       print(nodes);

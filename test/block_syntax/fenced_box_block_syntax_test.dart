@@ -28,7 +28,7 @@ void main() {
       final data = ''':::boxed\n박스 내부\n:::''';
 
       /// 문장 쪼개기
-      final lines = LineSplitter.split(data).toList();
+      final lines = LineSplitter.split(data).cast<Line>().toList();
 
       /// 파싱하기
       final nodes = BlockParser(lines, document).parseLines();
@@ -88,7 +88,7 @@ void main() {
       final data = ''':::boxed[라벨]\n박스 안\n:::''';
 
       /// 문장 쪼개기
-      final lines = LineSplitter.split(data).toList();
+      final lines = LineSplitter.split(data).cast<Line>().toList();
 
       /// 파싱하기
       final nodes = BlockParser(lines, document).parseLines();
@@ -133,7 +133,7 @@ void main() {
       final data = ''':::checked\n박스 내부\n:::''';
 
       /// 문장 쪼개기
-      final lines = LineSplitter.split(data).toList();
+      final lines = LineSplitter.split(data).cast<Line>().toList();
 
       /// 파싱하기
       final nodes = BlockParser(lines, document).parseLines();
@@ -202,7 +202,7 @@ void main() {
       final data = ''':::checked[라벨]\n박스 안\n:::''';
 
       /// 문장 쪼개기
-      final lines = LineSplitter.split(data).toList();
+      final lines = LineSplitter.split(data).cast<Line>().toList();
 
       /// 파싱하기
       final nodes = BlockParser(lines, document).parseLines();

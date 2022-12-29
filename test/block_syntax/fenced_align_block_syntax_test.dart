@@ -29,7 +29,7 @@ void main() {
       final data = ''':::right\n박스 내부\n:::''';
 
       /// 문장 쪼개기
-      final lines = LineSplitter.split(data).toList();
+      final lines = LineSplitter.split(data).cast<Line>().toList();
 
       /// 파싱하기
       final nodes = BlockParser(lines, document).parseLines();

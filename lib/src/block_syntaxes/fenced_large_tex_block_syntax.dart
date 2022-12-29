@@ -14,7 +14,7 @@ class FencedLargeTexBlockSyntax extends FencedTexBlockSyntax {
   @override
   Node parse(BlockParser parser) {
     /// canParse 조건을 만족한 라인 매치 결과
-    final match = pattern.firstMatch(parser.current)!;
+    final match = pattern.firstMatch(parser.current.content)!;
 
     /// 캡처그룹 1번 ($)
     final endBlock = match.group(1);

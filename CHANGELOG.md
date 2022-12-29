@@ -1,5 +1,35 @@
-## 6.0.0-dev
+## 7.0.0-dev
 
+* **Breaking change**: `close()` of `DelimiterSyntax` and `LinkSyntax`
+  returns multiple nodes instead of single one.
+* **Breaking change**: Remove deprecated APIs, including `TagSyntax`,
+  `indicatorForCheckedCheckBox`, and `indicatorForUncheckedCheckBox`.
+* **Breaking change**: Removed `BlockHtmlSyntax`, `BlockTagBlockHtmlSyntax`,
+  `LongBlockHtmlSyntax`, and `OtherTagBlockHtmlSyntax`.
+* **Breaking change**: Change the `line` properties of type `String` to `Line`.
+* **Breaking change**: Change the `lines` properties of type `List<String>` to
+  `List<Line>`.
+* Add a new syntax `HtmlBlockSyntax` to parse HTML blocks.
+* Add a new syntax `DecodeHtmlSyntax` to decode HTML entity and numeric
+  character references.
+* Add a new syntax `SoftLineBreakSyntax` to remove the single space before the
+  line ending.
+* Add a new syntax `EscapeHtmlSyntax` to encode (`"`), (`<`), (`>`) and (`&`).
+* Add an option `caseSensitive` to `TextSyntax`.
+* Add a new public method `parse(String text)` for `Document`.
+* Add a new public method `parseLineList(List<Line> text)` for `Document`.
+* Add a new type: `Line`.
+* Add a new optional parameter `parentSyntax` for `parseLines()` of
+  `BlockParser`, which can be used when parsing nested blocks.
+
+## 6.0.1
+
+* Fix a crash in checkbox lists when mixing checkbox items with
+  non-checkbox items.
+
+## 6.0.0
+
+* Require Dart 2.17
 * Add support to GFM extension for GitHub task lists (aka checkboxes).  These
   are only active in the `gitHubFlavored` and `gitHubWeb` extension sets.
 * Add support for `#ff0000` color swatches.

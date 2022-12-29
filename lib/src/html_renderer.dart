@@ -36,10 +36,7 @@ String markdownToHtml(
 
   if (inlineOnly) return renderToHtml(document.parseInline(markdown));
 
-  // Replace windows line endings with unix line endings, and split.
-  final lines = markdown.replaceAll('\r\n', '\n').split('\n');
-
-  final nodes = document.parseLines(lines);
+  final nodes = document.parse(markdown);
 
   return '${renderToHtml(nodes)}\n';
 }
@@ -77,7 +74,12 @@ const _blockTags = [
   'main',
   'nav',
   'section',
-  'table'
+  'table',
+  'thead',
+  'tbody',
+  'th',
+  'tr',
+  'td',
 ];
 
 /// Translates a parsed AST to HTML.
@@ -103,13 +105,13 @@ class HtmlRenderer implements NodeVisitor {
 
   @override
   void visitText(Text text) {
-    var content = text.text;
+    var content = text.textContent;
     if (const ['br', 'p', 'li'].contains(_lastVisitedTag)) {
       final lines = LineSplitter.split(content);
       content = content.contains('<pre>')
           ? lines.join('\n')
           : lines.map((line) => line.trimLeft()).join('\n');
-      if (text.text.endsWith('\n')) {
+      if (text.textContent.endsWith('\n')) {
         content = '$content\n';
       }
     }
