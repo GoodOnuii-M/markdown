@@ -318,8 +318,8 @@ class DelimiterRun implements Delimiter {
     // Make sure the shorter delimiter takes precedence.
     tags.sort((a, b) => a.indicatorLength.compareTo(b.indicatorLength));
 
-    // isRightFlanking이 적용되어 있지 않으면 공백(\s)이나 특수문자($, 괄호 등)가 앞에 있을때 태그(<>)가 잘 동작하지 않음. 
-    // 특수문자,공백과 태그(<>)가 연결되었을때를 처리하기 위해 항상 isRightFlanking을 true함. 
+    // isRightFlanking이 적용되어 있지 않으면 공백(\s)이나 특수문자($, 괄호 등)가 앞에 있을때 태그(<>)가 잘 동작하지 않음.
+    // 특수문자,공백과 태그(<>)가 연결되었을때를 처리하기 위해 항상 isRightFlanking을 true함.
     // TODO - tag에 따라 isRightFlanking을 조절할 수 있게하자
     isRightFlanking = true;
 

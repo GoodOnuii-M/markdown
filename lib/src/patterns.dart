@@ -174,6 +174,9 @@ final vocaKorPattern = RegExp(r'[ㄱ-ㅎ가-힣]+');
 final vocaEngPattern = RegExp(r'[a-zA-Z]+');
 final vocaEngPronunciationPattern = RegExp(r'\[.*\]+');
 final vocaLevelPattern = RegExp('`(O|X){1,}`');
-final vocaStrongCodeOnlyPattern = RegExp(r'\*\*(n|ad|v|a|\?|[a-zA-Z]){1,5}\*\*');
-final vocaStrongCodeLongPattern = RegExp(r'\*\*(n|ad|v|a|\?|[a-zA-Z]){1,5}\*\*([\w\s].*)');
-final vocaStrongCodeTextPattern = RegExp(r'(\*\*[a-zA-Z]{1,5}\*\*)([\wㄱ-ㅎ가-힣,.$()<>?:\\\+;&~! \n\r]+)');
+final vocaStrongCodeOnlyPattern =
+    RegExp(r'\*\*(n|ad|v|a|\?|[a-zA-Z]){1,5}\*\*');
+final vocaStrongCodeLongPattern =
+    RegExp(r'\*\*(n|ad|v|a|\?|[a-zA-Z]){1,5}\*\*([\w\s].*)');
+final vocaStrongCodeTextPattern =
+    RegExp(r'(\*\*[a-zA-Z]{1,5}\*\*)([\wㄱ-ㅎ가-힣,.$()<>?:\\\+;&~! \n\r]+)');

@@ -65,7 +65,7 @@ class CodeSyntax extends InlineSyntax {
     }
 
     final levelMatch = _levelRegExp.firstMatch(code);
-    
+
     if (levelMatch != null) {
       parser.addNode(
         Element.text(

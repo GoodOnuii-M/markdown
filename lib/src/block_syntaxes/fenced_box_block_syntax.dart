@@ -93,9 +93,9 @@ class FencedBoxBlockSyntax extends BlockSyntax {
       childrenLines.forEach((line) {
         var content = line.content;
         content = content
-              .replaceAll('&nbsp;', ' ')
-              .replaceAll('&ensp;', '  ')
-              .replaceAll('&emsp;', '   ');
+            .replaceAll('&nbsp;', ' ')
+            .replaceAll('&ensp;', '  ')
+            .replaceAll('&emsp;', '   ');
 
         if (vocaStrongCodeLongPattern.hasMatch(content)) {
           content = content.replaceAll('<br>', ' ');
@@ -108,15 +108,14 @@ class FencedBoxBlockSyntax extends BlockSyntax {
         text += '$content\n';
       });
 
-      
       var strongCode = '?';
-      
+
       for (var content in lines) {
         content = content
             .replaceAll('&nbsp;', ' ')
             .replaceAll('&ensp;', '  ')
             .replaceAll('&emsp;', '   ');
-        
+
         var attrKey = '';
         if (content.contains('[') && content.contains(']')) {
           attrKey = 'voca-pronunciation-eng';
@@ -125,21 +124,20 @@ class FencedBoxBlockSyntax extends BlockSyntax {
           content = content.replaceAll('`', '');
         } else if (vocaStrongCodeOnlyPattern.hasMatch(content)) {
           attrKey = 'voca-strong-code';
-          
+
           final code = vocaStrongCodeLongPattern.firstMatch(content)!.group(0)!;
           if (code != strongCode) {
-
-               if (element.attributes['voca-lang-kor'] != null && content != '') {
-                element.attributes['voca-lang-kor'] = '${element.attributes['voca-lang-kor']!}---|---';
-                
-              }
-              if (element.attributes['voca-lang-eng'] != null && content != '') {
-                element.attributes['voca-lang-eng'] = '${element.attributes['voca-lang-eng']!}---|---'; 
-              }
+            if (element.attributes['voca-lang-kor'] != null && content != '') {
+              element.attributes['voca-lang-kor'] =
+                  '${element.attributes['voca-lang-kor']!}---|---';
+            }
+            if (element.attributes['voca-lang-eng'] != null && content != '') {
+              element.attributes['voca-lang-eng'] =
+                  '${element.attributes['voca-lang-eng']!}---|---';
+            }
           }
 
           strongCode = code;
-
         } else if (vocaKorPattern.hasMatch(content)) {
           attrKey = 'voca-lang-kor';
         } else if (vocaEngPattern.hasMatch(content)) {
@@ -154,18 +152,17 @@ class FencedBoxBlockSyntax extends BlockSyntax {
 
         if (attrKey != '') {
           element.attributes[attrKey] = content;
-        }        
+        }
       }
 
       if (vocaStrongCodeTextPattern.hasMatch(text)) {
-        final matches =
-            vocaStrongCodeTextPattern.allMatches(text);
-        
+        final matches = vocaStrongCodeTextPattern.allMatches(text);
+
         for (var m in matches) {
           if (m.groupCount > 1) {
             final vocaStrongCode = m.group(1)!;
             final vocaText = m.group(2)!;
-            
+
             // TODO - attribute set하는 코드가 중복임, 따로 뺄것
             if (element.attributes['voca-strong-codes-without-text'] != null &&
                 vocaStrongCode != '') {
