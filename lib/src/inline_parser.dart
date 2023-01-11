@@ -69,9 +69,9 @@ class InlineParser {
     // character position.
     if (document.hasCustomInlineSyntaxes) {
       // We should be less aggressive in blowing past "words".
-      syntaxes.add(TextSyntax(r'[A-Za-z0-9]+(?=\s)'));
+      // syntaxes.add(TextSyntax(r'[A-Za-z0-9]+(?=\s)'));
     } else {
-      syntaxes.add(TextSyntax(r'[ \tA-Za-z0-9]*[A-Za-z0-9](?=\s)'));
+      // syntaxes.add(TextSyntax(r'[ \tA-Za-z0-9]*[A-Za-z0-9](?=\s)'));
     }
 
     if (document.withDefaultInlineSyntaxes) {
@@ -191,6 +191,7 @@ class InlineParser {
   ///
   /// This is the same strategy as "process emphasis" routine according to the
   /// CommonMark spec: https://spec.commonmark.org/0.30/#phase-2-inline-structure.
+  /// 설명 - delimiter run 처리
   void _processDelimiterRun(int bottomIndex) {
     var currentIndex = bottomIndex + 1;
     // Track the lowest index where we might find an open delimiter given a
