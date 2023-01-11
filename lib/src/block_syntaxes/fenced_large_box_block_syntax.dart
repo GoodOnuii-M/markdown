@@ -1,5 +1,5 @@
-import 'package:markdown/src/block_syntaxes/fenced_box_block_syntax.dart';
-import 'package:markdown/src/patterns.dart';
+import '../patterns.dart';
+import 'fenced_box_block_syntax.dart';
 
 class FencedLargeBoxBlockSyntax extends FencedBoxBlockSyntax {
   FencedLargeBoxBlockSyntax();

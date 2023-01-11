@@ -8,10 +8,11 @@ void main() {
     /// MD 다큐먼트 생성
     final document = Document(
       blockSyntaxes: [
-        FencedTexBlockSyntax(),
+        const FencedTexBlockSyntax(),
       ],
       encodeHtml: false,
     );
+    // ignore: prefer_const_declarations
     final data = r'''
 $$
 \displaystyle \int\_{a}^{b}f\left( x\right)dx=\left[ F\left( x\right)\right]\_{a}^{b}=F\left( b\right)-F\left( a\right)
@@ -29,7 +30,7 @@ $a$
 
     expect(
       nodes[0],
-      TypeMatcher<Element>()
+      const TypeMatcher<Element>()
           .having(
             (e) => e.textContent,
             r'$$ 블락 분석기에 걸러진 문자',
@@ -45,7 +46,7 @@ $a$
 
     expect(
       nodes[1],
-      TypeMatcher<Element>()
+      const TypeMatcher<Element>()
           .having(
             (e) => e.textContent,
             r'$$ 블락 분석기에 걸러지지 않은 문자',

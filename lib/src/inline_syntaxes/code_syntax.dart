@@ -63,17 +63,19 @@ class CodeSyntax extends InlineSyntax {
     if (parser.encodeHtml) {
       code = escapeHtml(code, escapeApos: false);
     }
-    parser.addNode(Element.text('code', code));
 
     final levelMatch = _levelRegExp.firstMatch(code);
-    parser.addNode(
-      Element.text(
-        'code',
-        levelMatch == null
-            ? code
-            : code.replaceAll('O', '●').replaceAll('X', '○'),
-      )..attributes['class'] = levelMatch == null ? '' : 'level',
-    );
+
+    if (levelMatch != null) {
+      parser.addNode(
+        Element.text(
+          'code',
+          code.replaceAll('O', '●').replaceAll('X', '○'),
+        )..attributes['class'] = 'level',
+      );
+    } else {
+      parser.addNode(Element.text('code', code));
+    }
 
     return true;
   }

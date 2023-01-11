@@ -1,10 +1,9 @@
 // Copyright (c) 2022, the Dart project authors.  Please see the AUTHORS file
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
-import 'package:markdown/src/inline_syntaxes/text_syntax.dart';
-
 import '../charcode.dart';
 import '../patterns.dart';
+import 'text_syntax.dart';
 
 /// Leave inline HTML tags alone, from
 /// [CommonMark 0.30](http://spec.commonmark.org/0.30/#raw-html).

@@ -1,5 +1,4 @@
 import 'package:markdown/markdown.dart';
-import 'package:markdown/src/inline_syntaxes/non_breaking_space_syntax.dart';
 import 'package:test/test.dart';
 
 void main() {

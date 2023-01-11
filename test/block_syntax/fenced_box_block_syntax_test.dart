@@ -25,7 +25,7 @@ void main() {
     test('박스 블락 구문 파싱 테스트', () {
       /// MD 다큐먼트 생성
 
-      final data = ''':::boxed\n박스 내부\n:::''';
+      const data = ''':::boxed\n박스 내부\n:::''';
 
       /// 문장 쪼개기
       final lines = LineSplitter.split(data).cast<Line>().toList();
@@ -39,7 +39,7 @@ void main() {
       /// 블록 엘리먼트 태그, 하위 노드 수 확인
       expect(
         nodes.first,
-        TypeMatcher<Element>()
+        const TypeMatcher<Element>()
             .having(
               (e) => e.tag,
               '태그',
@@ -58,7 +58,7 @@ void main() {
       /// 첫번째 하위노드 태그 및 텍스트 확인
       expect(
         children?.first,
-        TypeMatcher<Element>()
+        const TypeMatcher<Element>()
             .having(
               (e) => e.tag,
               '태그',
@@ -85,7 +85,7 @@ void main() {
     ///       블록의 라벨은 '라벨'이다
     ///       블록의 하위 노드의 내용은 '박스 안' 이다.
     test('박스 블락 구문 파싱 테스트 With 라벨', () {
-      final data = ''':::boxed[라벨]\n박스 안\n:::''';
+      const data = ''':::boxed[라벨]\n박스 안\n:::''';
 
       /// 문장 쪼개기
       final lines = LineSplitter.split(data).cast<Line>().toList();
@@ -98,7 +98,7 @@ void main() {
 
       expect(
         nodes.first,
-        TypeMatcher<Element>()
+        const TypeMatcher<Element>()
             .having((e) => e.tag, '태그', 'boxedblock')
             .having(
               (e) => e.children,
@@ -130,7 +130,7 @@ void main() {
     test('체크 블락 구문 파싱 테스트', () {
       /// MD 다큐먼트 생성
 
-      final data = ''':::checked\n박스 내부\n:::''';
+      const data = ''':::checked\n박스 내부\n:::''';
 
       /// 문장 쪼개기
       final lines = LineSplitter.split(data).cast<Line>().toList();
@@ -144,7 +144,7 @@ void main() {
       /// 블록 엘리먼트 태그, 하위 노드 수 확인
       expect(
         nodes.first,
-        TypeMatcher<Element>()
+        const TypeMatcher<Element>()
             .having(
               (e) => e.tag,
               '태그',
@@ -171,7 +171,7 @@ void main() {
       /// 첫번째 하위노드 태그 및 텍스트 확인
       expect(
         children?.first,
-        TypeMatcher<Element>()
+        const TypeMatcher<Element>()
             .having(
               (e) => e.tag,
               '태그',
@@ -199,7 +199,7 @@ void main() {
     ///       블록의 라벨은 '라벨'이다
     ///       블록의 하위 노드의 내용은 '박스 안' 이다.
     test('체크 블락 구문 파싱 테스트 With 라벨', () {
-      final data = ''':::checked[라벨]\n박스 안\n:::''';
+      const data = ''':::checked[라벨]\n박스 안\n:::''';
 
       /// 문장 쪼개기
       final lines = LineSplitter.split(data).cast<Line>().toList();
@@ -212,7 +212,7 @@ void main() {
 
       expect(
         nodes.first,
-        TypeMatcher<Element>()
+        const TypeMatcher<Element>()
             .having((e) => e.tag, '태그', 'boxedblock')
             .having(
               (e) => e.children,

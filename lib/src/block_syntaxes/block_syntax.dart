@@ -20,6 +20,7 @@ abstract class BlockSyntax {
 
   Node? parse(BlockParser parser);
 
+  // 줄들을 파싱한다. 블록 파서로
   List<Line?> parseChildLines(BlockParser parser) {
     // Grab all of the lines that form the block element.
     final childLines = <Line?>[];
@@ -35,6 +36,7 @@ abstract class BlockSyntax {
   }
 
   /// Gets whether or not [parser]'s current line should end the previous block.
+  /// 블록의 끝인지 확인한다
   static bool isAtBlockEnd(BlockParser parser) {
     if (parser.isDone) return true;
     return parser.blockSyntaxes

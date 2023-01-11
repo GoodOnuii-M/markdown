@@ -34,11 +34,12 @@ final texFencePattern = RegExp(r'^[ ]{0,3}(\$)$');
 /// Fenced blockquotes.
 final blockquoteFencePattern = RegExp(r'^>{3}\s*$');
 
-final largeBoxFencePattern = RegExp(r'^(\:{4,4})(boxed|voca|checked)(.*)$');
+// 박스 문법 처리
+final largeBoxFencePattern = RegExp(r'^(\:{4,})(boxed|voca|checked)(.*)$');
 
-final boxFencePattern = RegExp(r'^(\:{3,3})(boxed|voca|checked)(.*)$');
+final boxFencePattern = RegExp(r'^(\:{3,})(boxed|voca|checked)(.*)$');
 
-final alignFencePattern = RegExp(r'^(\:{3,3})(left|middle|right)(.*)$');
+final alignFencePattern = RegExp(r'^(\:{3,})(left|middle|right)(.*)$');
 
 /// Three or more hyphens, asterisks or underscores by themselves. Note that
 /// a line like `----` is valid as both HR and SETEXT. In case of a tie,
@@ -166,3 +167,16 @@ final htmlCharactersPattern = RegExp(
   '&(?:([a-z0-9]+)|#([0-9]{1,7})|#x([a-f0-9]{1,6}));',
   caseSensitive: false,
 );
+
+// final vocaKorPattern = RegExp(r'[ㄱ-ㅎ가-힣|\s]+');
+final vocaKorPattern = RegExp('[ㄱ-ㅎ가-힣]+');
+// final vocaEngPattern = RegExp(r'[a-zA-Z|\s]+');
+final vocaEngPattern = RegExp('[a-zA-Z]+');
+final vocaEngPronunciationPattern = RegExp(r'\[.*\]+');
+final vocaLevelPattern = RegExp('`(O|X){1,}`');
+final vocaStrongCodeOnlyPattern =
+    RegExp(r'\*\*(n|ad|v|a|\?|[a-zA-Z]){1,5}\*\*');
+final vocaStrongCodeLongPattern =
+    RegExp(r'\*\*(n|ad|v|a|\?|[a-zA-Z]){1,5}\*\*([\w\s].*)');
+final vocaStrongCodeTextPattern =
+    RegExp(r'(\*\*[a-zA-Z]{1,5}\*\*)([\wㄱ-ㅎ가-힣,.$()<>?:\\\+;&~! \n\r]+)');

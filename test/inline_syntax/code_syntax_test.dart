@@ -7,7 +7,7 @@ void main() {
   setUp(() {
     document = Document(
       blockSyntaxes: [
-        HeaderSyntax(),
+        const HeaderSyntax(),
       ],
       encodeHtml: false,
     );
@@ -20,7 +20,7 @@ void main() {
     ///       태그가 'code'인 노드는 1개 이다
     ///       태그가 'code'인 노드는 엘리먼트이며 텍스트는 '①' 이다
     test('일반적인 데이터 파싱', () {
-      final data = r'`①` $f(x)$ 의 값이 한없이 커지는 경우';
+      const data = r'`①` $f(x)$ 의 값이 한없이 커지는 경우';
 
       /// 파싱결과
       final result = document.parseInline(data);
@@ -35,7 +35,7 @@ void main() {
 
       expect(
         codeElements.first,
-        TypeMatcher<Element>().having(
+        const TypeMatcher<Element>().having(
           (e) => e.textContent,
           '텍스트',
           '①',
@@ -50,9 +50,9 @@ void main() {
     ///       태그가 'code'인 노드는 1개 이다
     ///       태그가 'code'인 노드는 엘리먼트이며 텍스트는 '●○○○' 이다
     test('난이도와 함께 주어진 데이터 파싱', () {
-      final data = '### **1.** `OXXX`';
+      const data = '### **1.** `OXXX`';
 
-      final lines = LineSplitter().convert(data).toList();
+      final lines = const LineSplitter().convert(data).toList();
 
       /// 파싱결과
       final nodes = document.parseLines(lines);
@@ -63,7 +63,7 @@ void main() {
 
       expect(
         topNode,
-        TypeMatcher<Element>().having(
+        const TypeMatcher<Element>().having(
           (e) => e.tag,
           '태그',
           'h3',
@@ -79,7 +79,7 @@ void main() {
 
       expect(
         codeElements?.first,
-        TypeMatcher<Element>().having(
+        const TypeMatcher<Element>().having(
           (e) => e.textContent,
           '텍스트',
           '●○○○',
