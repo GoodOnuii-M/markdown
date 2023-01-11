@@ -88,6 +88,7 @@ export 'src/inline_syntaxes/line_break_syntax.dart';
 export 'src/inline_syntaxes/link_syntax.dart';
 export 'src/inline_syntaxes/non_breaking_space_syntax.dart';
 export 'src/inline_syntaxes/single_tex_syntax.dart';
+export 'src/inline_syntaxes/soft_line_break_syntax.dart';
 export 'src/inline_syntaxes/space_syntax.dart';
 export 'src/inline_syntaxes/strikethrough_syntax.dart';
 export 'src/inline_syntaxes/strong_code_syntax.dart';
@@ -96,9 +97,6 @@ export 'src/inline_syntaxes/sup_syntax.dart';
 export 'src/inline_syntaxes/text_syntax.dart';
 export 'src/inline_syntaxes/than_syntax.dart';
 export 'src/inline_syntaxes/underline_syntax.dart';
-export 'src/inline_syntaxes/soft_line_break_syntax.dart';
-export 'src/inline_syntaxes/strikethrough_syntax.dart';
-export 'src/inline_syntaxes/text_syntax.dart';
 export 'src/line.dart';
 export 'src/patterns.dart';
 

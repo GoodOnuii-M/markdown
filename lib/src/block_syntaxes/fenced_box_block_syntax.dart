@@ -1,4 +1,4 @@
-import 'package:markdown/markdown.dart';
+import '../../markdown.dart';
 
 class FencedBoxBlockSyntax extends BlockSyntax {
   FencedBoxBlockSyntax();
@@ -88,9 +88,9 @@ class FencedBoxBlockSyntax extends BlockSyntax {
     } else if (boxType == 'voca') {
       // 다른 box 문법과 다르게 voca는 내부에서 다른 문법을 적용하기 위해서 전처리가 안된 child lines를 사용함
       final lines = <String>[];
-      var text = '';
+      final text = StringBuffer();
 
-      childrenLines.forEach((line) {
+      for (var line in childrenLines) {
         var content = line.content;
         content = content
             .replaceAll('&nbsp;', ' ')
@@ -105,8 +105,8 @@ class FencedBoxBlockSyntax extends BlockSyntax {
 
         lines.addAll(split);
         content = content.replaceAll('<br>', ' ');
-        text += '$content\n';
-      });
+        text.write('$content\n');
+      }
 
       var strongCode = '?';
 
@@ -144,43 +144,22 @@ class FencedBoxBlockSyntax extends BlockSyntax {
           attrKey = 'voca-lang-eng';
         }
 
-        // 품사가 2개인것 처럼 여러개 처리해야할때는 임의로 정한 특수 기호 ||| 로 분류해준다.
-        if (element.attributes[attrKey] != null && content != '') {
-          final existingValue = element.attributes[attrKey]!;
-          content = '$existingValue|||$content';
-        }
-
-        if (attrKey != '') {
-          element.attributes[attrKey] = content;
-        }
+        setAttribute(element, attrKey, content);
       }
 
-      if (vocaStrongCodeTextPattern.hasMatch(text)) {
-        final matches = vocaStrongCodeTextPattern.allMatches(text);
+      final vocaText = text.toString();
+      if (vocaStrongCodeTextPattern.hasMatch(vocaText)) {
+        final matches = vocaStrongCodeTextPattern.allMatches(vocaText);
 
         for (var m in matches) {
           if (m.groupCount > 1) {
             final vocaStrongCode = m.group(1)!;
             final vocaText = m.group(2)!;
+            const vocaStrongCodeKey = 'voca-strong-codes-without-text';
+            const vocaTextKey = 'voca-text';
 
-            // TODO - attribute set하는 코드가 중복임, 따로 뺄것
-            if (element.attributes['voca-strong-codes-without-text'] != null &&
-                vocaStrongCode != '') {
-              final existingValue =
-                  element.attributes['voca-strong-codes-without-text']!;
-              element.attributes['voca-strong-codes-without-text'] =
-                  '$existingValue|||$vocaStrongCode';
-            } else {
-              element.attributes['voca-strong-codes-without-text'] =
-                  vocaStrongCode;
-            }
-
-            if (element.attributes['voca-text'] != null && vocaText != '') {
-              final existingValue = element.attributes['voca-text']!;
-              element.attributes['voca-text'] = '$existingValue|||$vocaText';
-            } else {
-              element.attributes['voca-text'] = vocaText;
-            }
+            setAttribute(element, vocaStrongCodeKey, vocaStrongCode);
+            setAttribute(element, vocaTextKey, vocaText);
           }
         }
       }
@@ -195,5 +174,14 @@ class FencedBoxBlockSyntax extends BlockSyntax {
     return element
       ..children?.addAll(nodes)
       ..attributes['type'] = boxType;
+  }
+
+  void setAttribute(Element element, String key, String value) {
+    if (element.attributes[key] != null && value != '') {
+      final existingValue = element.attributes[key]!;
+      element.attributes[key] = '$existingValue|||$value';
+    } else {
+      element.attributes[key] = value;
+    }
   }
 }

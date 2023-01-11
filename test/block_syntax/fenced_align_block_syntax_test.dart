@@ -25,7 +25,7 @@ void main() {
     test('박스 블락 구문 파싱 테스트', () {
       /// MD 다큐먼트 생성
 
-      final data = ''':::right\n박스 내부\n:::''';
+      const data = ''':::right\n박스 내부\n:::''';
 
       /// 문장 쪼개기
       final lines = LineSplitter.split(data).cast<Line>().toList();
@@ -39,7 +39,7 @@ void main() {
       /// 블록 엘리먼트 태그, 하위 노드 수 확인
       expect(
         nodes.first,
-        TypeMatcher<Element>()
+        const TypeMatcher<Element>()
             .having(
               (e) => e.tag,
               '태그',
@@ -63,7 +63,7 @@ void main() {
       /// 첫번째 하위노드 태그 및 텍스트 확인
       expect(
         children?.first,
-        TypeMatcher<Element>()
+        const TypeMatcher<Element>()
             .having(
               (e) => e.tag,
               '태그',

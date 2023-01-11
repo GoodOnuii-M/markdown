@@ -310,7 +310,7 @@ class DelimiterRun implements Delimiter {
 
     // If it is a right-flanking delimiter run, see
     // http://spec.commonmark.org/0.30/#right-flanking-delimiter-run.
-    bool isRightFlanking = !precededByWhitespace &&
+    var isRightFlanking = !precededByWhitespace &&
         (!precededByPunctuation ||
             followedByWhitespace ||
             followedByPunctuation);

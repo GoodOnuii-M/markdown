@@ -19,7 +19,7 @@ void main() {
 
     expect(
       result[0],
-      TypeMatcher<Element>()
+      const TypeMatcher<Element>()
           .having(
             (e) => e.textContent,
             r'$ 구문 분석기에 걸러진 문자',
@@ -34,7 +34,7 @@ void main() {
 
     expect(
       result[1],
-      TypeMatcher<Text>().having(
+      const TypeMatcher<Text>().having(
         (e) => e.textContent,
         r'$ 구문 분석기에 걸러지지 않은 문자',
         equals('라서'),
@@ -43,7 +43,7 @@ void main() {
 
     expect(
       result[2],
-      TypeMatcher<Element>()
+      const TypeMatcher<Element>()
           .having(
             (e) => e.textContent,
             r'$ 구문 분석기에 걸러진 문자',

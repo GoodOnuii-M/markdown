@@ -1,4 +1,4 @@
-import 'package:markdown/markdown.dart';
+import '../../markdown.dart';
 
 class SupInlineSyntax extends DelimiterSyntax {
   SupInlineSyntax()

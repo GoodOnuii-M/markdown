@@ -1,6 +1,6 @@
-import 'package:markdown/src/ast.dart';
-import 'package:markdown/src/inline_parser.dart';
-import 'package:markdown/src/inline_syntaxes/inline_syntax.dart';
+import '../ast.dart';
+import '../inline_parser.dart';
+import 'inline_syntax.dart';
 
 class ThanInlineSyntax extends InlineSyntax {
   ThanInlineSyntax() : super('($_lessThan|$_greaterThan)');
