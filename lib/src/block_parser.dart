@@ -125,6 +125,7 @@ class BlockParser {
     // For example the `TableSyntax` might not advance the `_pos` in `parse`
     // method, beause of the header row does not match the delimiter row in the
     // number of cells, which makes a table like structure not be recognized.
+    // 설명 - parse()를 실행하고도 _pos가 변하지 않으면 같은 BlockSyntax을 더이상 파싱하지 않는다.
     BlockSyntax? neverMatch;
 
     while (!isDone) {

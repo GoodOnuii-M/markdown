@@ -6,9 +6,10 @@ class FencedBoxBlockSyntax extends BlockSyntax {
 
   @override
   RegExp get pattern => boxFencePattern;
-  late final fencePattern = pattern == boxFencePattern
-      ? RegExp(r'^(\:{3,3})(.*)$')
-      : RegExp(r'^(\:{4,4})(.*)$');
+  // late final fencePattern = pattern == boxFencePattern
+  //     ? RegExp(r'^(\:{3,})(.*)$')
+  //     : RegExp(r'^(\:{4,})(.*)$');
+  late final fencePattern = RegExp(r'^(\:{3,})(.*)$');
 
   @override
   List<Line?> parseChildLines(BlockParser parser, [String? endBlock]) {
@@ -83,6 +84,108 @@ class FencedBoxBlockSyntax extends BlockSyntax {
         if (nodes.remove(titleH1)) {
           /// checked 블록의 타이틀을 첫번재 h1의 text로 설정
           element.attributes['title'] = titleH1.textContent;
+        }
+      }
+    } else if (boxType == 'voca') {
+      // 다른 box 문법과 다르게 voca는 내부에서 다른 문법을 적용하기 위해서 전처리가 안된 child lines를 사용함
+      final lines = <String>[];
+      var text = '';
+
+      childrenLines.forEach((line) {
+        var content = line.content;
+        content = content
+              .replaceAll('&nbsp;', ' ')
+              .replaceAll('&ensp;', '  ')
+              .replaceAll('&emsp;', '   ');
+
+        if (vocaStrongCodeLongPattern.hasMatch(content)) {
+          content = content.replaceAll('<br>', ' ');
+        }
+
+        final split = content.split('<br>');
+
+        lines.addAll(split);
+        content = content.replaceAll('<br>', ' ');
+        text += '$content\n';
+      });
+
+      
+      var strongCode = '?';
+      
+      for (var content in lines) {
+        content = content
+            .replaceAll('&nbsp;', ' ')
+            .replaceAll('&ensp;', '  ')
+            .replaceAll('&emsp;', '   ');
+        
+        var attrKey = '';
+        if (content.contains('[') && content.contains(']')) {
+          attrKey = 'voca-pronunciation-eng';
+        } else if (vocaLevelPattern.hasMatch(content)) {
+          attrKey = 'voca-level';
+          content = content.replaceAll('`', '');
+        } else if (vocaStrongCodeOnlyPattern.hasMatch(content)) {
+          attrKey = 'voca-strong-code';
+          
+          final code = vocaStrongCodeLongPattern.firstMatch(content)!.group(0)!;
+          if (code != strongCode) {
+
+               if (element.attributes['voca-lang-kor'] != null && content != '') {
+                element.attributes['voca-lang-kor'] = '${element.attributes['voca-lang-kor']!}---|---';
+                
+              }
+              if (element.attributes['voca-lang-eng'] != null && content != '') {
+                element.attributes['voca-lang-eng'] = '${element.attributes['voca-lang-eng']!}---|---'; 
+              }
+          }
+
+          strongCode = code;
+
+        } else if (vocaKorPattern.hasMatch(content)) {
+          attrKey = 'voca-lang-kor';
+        } else if (vocaEngPattern.hasMatch(content)) {
+          attrKey = 'voca-lang-eng';
+        }
+
+        // 품사가 2개인것 처럼 여러개 처리해야할때는 임의로 정한 특수 기호 ||| 로 분류해준다.
+        if (element.attributes[attrKey] != null && content != '') {
+          final existingValue = element.attributes[attrKey]!;
+          content = '$existingValue|||$content';
+        }
+
+        if (attrKey != '') {
+          element.attributes[attrKey] = content;
+        }        
+      }
+
+      if (vocaStrongCodeTextPattern.hasMatch(text)) {
+        final matches =
+            vocaStrongCodeTextPattern.allMatches(text);
+        
+        for (var m in matches) {
+          if (m.groupCount > 1) {
+            final vocaStrongCode = m.group(1)!;
+            final vocaText = m.group(2)!;
+            
+            // TODO - attribute set하는 코드가 중복임, 따로 뺄것
+            if (element.attributes['voca-strong-codes-without-text'] != null &&
+                vocaStrongCode != '') {
+              final existingValue =
+                  element.attributes['voca-strong-codes-without-text']!;
+              element.attributes['voca-strong-codes-without-text'] =
+                  '$existingValue|||$vocaStrongCode';
+            } else {
+              element.attributes['voca-strong-codes-without-text'] =
+                  vocaStrongCode;
+            }
+
+            if (element.attributes['voca-text'] != null && vocaText != '') {
+              final existingValue = element.attributes['voca-text']!;
+              element.attributes['voca-text'] = '$existingValue|||$vocaText';
+            } else {
+              element.attributes['voca-text'] = vocaText;
+            }
+          }
         }
       }
     }
