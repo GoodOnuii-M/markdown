@@ -1,5 +1,4 @@
 import 'package:markdown/markdown.dart';
-import 'package:markdown/src/patterns.dart';
 
 class FencedBoxBlockSyntax extends BlockSyntax {
   FencedBoxBlockSyntax();
