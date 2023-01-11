@@ -100,5 +100,6 @@ export 'src/inline_syntaxes/soft_line_break_syntax.dart';
 export 'src/inline_syntaxes/strikethrough_syntax.dart';
 export 'src/inline_syntaxes/text_syntax.dart';
 export 'src/line.dart';
+export 'src/patterns.dart';
 
 const version = packageVersion;
