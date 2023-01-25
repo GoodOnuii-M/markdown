@@ -5,6 +5,7 @@ class FencedBoxBlockSyntax extends BlockSyntax {
 
   @override
   RegExp get pattern => boxFencePattern;
+
   // late final fencePattern = pattern == boxFencePattern
   //     ? RegExp(r'^(\:{3,})(.*)$')
   //     : RegExp(r'^(\:{4,})(.*)$');
@@ -90,7 +91,11 @@ class FencedBoxBlockSyntax extends BlockSyntax {
       final lines = <String>[];
       final text = StringBuffer();
 
-      for (var line in childrenLines) {
+      int beforeStrongCodeIndex = 0;
+      var beforeStrongCode = true;
+
+      for (var i = 0; i < childrenLines.length; i++) {
+        final line = childrenLines[i];
         var content = line.content;
         content = content
             .replaceAll('&nbsp;', ' ')
@@ -99,6 +104,11 @@ class FencedBoxBlockSyntax extends BlockSyntax {
 
         if (vocaStrongCodeLongPattern.hasMatch(content)) {
           content = content.replaceAll('<br>', ' ');
+          beforeStrongCode = false;
+        } else {
+          if (beforeStrongCode) {
+            beforeStrongCodeIndex = i;
+          }
         }
 
         final split = content.split('<br>');
@@ -110,16 +120,31 @@ class FencedBoxBlockSyntax extends BlockSyntax {
 
       var strongCode = '?';
 
-      for (var content in lines) {
+      for (var i = 0; i < beforeStrongCodeIndex; i++) {
+        var content = lines[i];
+        content = content
+            .replaceAll('&nbsp;', ' ')
+            .replaceAll('&ensp;', '  ')
+            .replaceAll('&emsp;', '   ');
+
+        var attrKey = 'voca-pronunciation-eng';
+        if (vocaLevelPattern.hasMatch(content)) {
+          attrKey = 'voca-level';
+          content = content.replaceAll('`', '');
+        }
+
+        setAttribute(element, attrKey, content);
+      }
+
+      for (var i = beforeStrongCodeIndex; i < lines.length; i++) {
+        var content = lines[i];
         content = content
             .replaceAll('&nbsp;', ' ')
             .replaceAll('&ensp;', '  ')
             .replaceAll('&emsp;', '   ');
 
         var attrKey = '';
-        if (content.contains('[') && content.contains(']')) {
-          attrKey = 'voca-pronunciation-eng';
-        } else if (vocaLevelPattern.hasMatch(content)) {
+        if (vocaLevelPattern.hasMatch(content)) {
           attrKey = 'voca-level';
           content = content.replaceAll('`', '');
         } else if (vocaStrongCodeOnlyPattern.hasMatch(content)) {
@@ -131,10 +156,16 @@ class FencedBoxBlockSyntax extends BlockSyntax {
               element.attributes['voca-lang-kor'] =
                   '${element.attributes['voca-lang-kor']!}---|---';
             }
+
             if (element.attributes['voca-lang-eng'] != null && content != '') {
               element.attributes['voca-lang-eng'] =
                   '${element.attributes['voca-lang-eng']!}---|---';
             }
+
+            // setAttribute(element, 'voca-lang-kor', content,
+            //     splitter: '---|---');
+            // setAttribute(element, 'voca-lang-eng', content,
+            //     splitter: '---|---');
           }
 
           strongCode = code;
@@ -176,10 +207,15 @@ class FencedBoxBlockSyntax extends BlockSyntax {
       ..attributes['type'] = boxType;
   }
 
-  void setAttribute(Element element, String key, String value) {
+  void setAttribute(
+    Element element,
+    String key,
+    String value, {
+    String splitter = '|||',
+  }) {
     if (element.attributes[key] != null && value != '') {
       final existingValue = element.attributes[key]!;
-      element.attributes[key] = '$existingValue|||$value';
+      element.attributes[key] = '$existingValue$splitter$value';
     } else {
       element.attributes[key] = value;
     }

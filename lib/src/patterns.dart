@@ -168,9 +168,9 @@ final htmlCharactersPattern = RegExp(
   caseSensitive: false,
 );
 
-// final vocaKorPattern = RegExp(r'[ㄱ-ㅎ가-힣|\s]+');
+final strikeThroughPattern = RegExp(r'(~{1,3})([\wㄱ-ㅎ가-힣 ]+)(~{1,3})');
+final strongCodePattern = RegExp(r'(\*{1,3})([\wㄱ-ㅎ가-힣 ]+)(\*{1,3})');
 final vocaKorPattern = RegExp('[ㄱ-ㅎ가-힣]+');
-// final vocaEngPattern = RegExp(r'[a-zA-Z|\s]+');
 final vocaEngPattern = RegExp('[a-zA-Z]+');
 final vocaEngPronunciationPattern = RegExp(r'\[.*\]+');
 final vocaLevelPattern = RegExp('`(O|X){1,}`');
