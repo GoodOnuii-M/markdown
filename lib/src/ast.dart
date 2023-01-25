@@ -18,6 +18,7 @@ class Element implements Node {
   final String tag;
   final List<Node>? children;
   final Map<String, String> attributes;
+  final Map<String, dynamic> tagOptions = {};
   String? generatedId;
 
   /// Instantiates a [tag] Element with [children].
@@ -59,6 +60,9 @@ class Element implements Node {
     return children == null
         ? ''
         : children.map((child) => child.textContent).join();
+  }
+  void setTagOption(String key, dynamic value) {
+    tagOptions[key] = value;
   }
 }
 

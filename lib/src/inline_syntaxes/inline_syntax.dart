@@ -6,6 +6,7 @@ import '../inline_parser.dart';
 import '../util.dart';
 
 /// Represents one kind of Markdown tag that can be parsed.
+/// 설명 - 1줄 단위로 파싱을 하기 위한 문법(syntax)
 abstract class InlineSyntax {
   final RegExp pattern;
 
@@ -29,6 +30,7 @@ abstract class InlineSyntax {
   ///
   /// The parser's position can be overriden with [startMatchPos].
   /// Returns whether or not the pattern successfully matched.
+  /// 설명 - 현재 위치의 파서를 처리하려고 한다. 
   bool tryMatch(InlineParser parser, [int? startMatchPos]) {
     startMatchPos ??= parser.pos;
 
@@ -44,6 +46,7 @@ abstract class InlineSyntax {
     if (startMatch == null) return false;
 
     // Write any existing plain text up to this point.
+    // 설명 - 현재까지 파싱처리된 문자열들을 '트리'에 저장한다. '트리'는 어떻게 문자열을 처리할지를 담은 노드이다.
     parser.writeText();
 
     if (onMatch(parser, startMatch)) parser.consume(startMatch.match.length);

@@ -62,6 +62,8 @@ class InlineParser {
     // User specified syntaxes are the first syntaxes to be evaluated.
     syntaxes.addAll(document.inlineSyntaxes);
 
+    // syntaxes.remove();
+
     // This first RegExp matches plain text to accelerate parsing. It's written
     // so that it does not match any prefix of any following syntaxes. Most
     // Markdown is plain text, so it's faster to match one RegExp per 'word'
@@ -108,7 +110,8 @@ class InlineParser {
       }
 
       // See if the current text matches any defined Markdown syntax.
-      if (syntaxes.any((syntax) => syntax.tryMatch(this))) continue;
+      // 정의된 inline syntax의 패턴과 일치하면은 다음 문자로 넘어간다.
+      if (syntaxes.any((InlineSyntax syntax) => syntax.tryMatch(this))) continue; 
 
       // If we got here, it's just text.
       advanceBy(1);
@@ -126,6 +129,7 @@ class InlineParser {
   ///
   /// This is the "look for link or image" routine from the CommonMark spec:
   /// https://spec.commonmark.org/0.29/#-look-for-link-or-image-.
+  /// 설명 - 링크이거나 이미지일때 처리를 한다.
   void _linkOrImage() {
     final index = _delimiterStack
         .lastIndexWhere((d) => d.char == $lbracket || d.char == $exclamation);
@@ -201,7 +205,7 @@ class InlineParser {
     // delimiter length modulo 3 (0, 1, 2).
     final openersBottom = <int, List<int>>{};
     while (currentIndex < _delimiterStack.length) {
-      final closer = _delimiterStack[currentIndex];
+      final closer = _delimiterStack[currentIndex]; // *,<,~
       if (!closer.canClose || closer is! DelimiterRun) {
         currentIndex++;
         continue;
@@ -324,6 +328,7 @@ class InlineParser {
 
   int charAt(int index) => source.codeUnitAt(index);
 
+  // 텍스트를 트리에 저장한다.
   void writeText() {
     if (pos == start) {
       return;

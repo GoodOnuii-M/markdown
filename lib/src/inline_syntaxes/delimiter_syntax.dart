@@ -303,7 +303,7 @@ class DelimiterRun implements Delimiter {
 
     // If it is a left-flanking delimiter run, see
     // http://spec.commonmark.org/0.30/#left-flanking-delimiter-run.
-    final isLeftFlanking = !followedByWhitespace &&
+    var isLeftFlanking = !followedByWhitespace &&
         (!followedByPunctuation ||
             precededByWhitespace ||
             precededByPunctuation);
@@ -322,6 +322,7 @@ class DelimiterRun implements Delimiter {
     // 특수문자,공백과 태그(<>)가 연결되었을때를 처리하기 위해 항상 isRightFlanking을 true함.
     // TODO - tag에 따라 isRightFlanking을 조절할 수 있게하자
     isRightFlanking = true;
+    isLeftFlanking = true;
 
     return DelimiterRun._(
       node: node,
