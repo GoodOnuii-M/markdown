@@ -43,8 +43,6 @@ class HighlightInlineSyntax extends InlineSyntax {
               // int start = m.group(1)!.length;
               // int end = txt.length - m.group(3)!.length;
 
-              int start = m.start + m.group(1)!.length;
-              int end = m.end - m.group(3)!.length;
               int tagSize = m.group(3)!.length;
               TagPos pos = TagPos(
                 length: txt.length,
