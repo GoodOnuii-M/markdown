@@ -10,12 +10,12 @@ import 'package:html/dom.dart' show Element;
 import 'package:html/parser.dart' show parseFragment;
 import 'package:markdown/markdown.dart'
     show
-        markdownToHtml,
-        InlineSyntax,
-        BlockSyntax,
         AutolinkExtensionSyntax,
+        BlockSyntax,
+        InlineSyntax,
         StrikethroughSyntax,
-        TableSyntax;
+        TableSyntax,
+        markdownToHtml;
 import 'package:path/path.dart' as p;
 
 import '../test/util.dart';
@@ -128,6 +128,8 @@ CompareResult compareResult(
   bool verboseLooseMatch = false,
   Set<String> extensions = const {},
 }) {
+  var enabletagfilter = false;
+
   String output;
   final inlineSyntaxes = <InlineSyntax>[];
   final blockSyntaxes = <BlockSyntax>[];
@@ -144,7 +146,7 @@ CompareResult compareResult(
         blockSyntaxes.add(const TableSyntax());
         break;
       case 'tagfilter':
-        // TODO(Zhiguang): https://github.com/dart-lang/markdown/pull/447
+        enabletagfilter = true;
         break;
       default:
         throw UnimplementedError('Unimplemented extension "$extension"');
@@ -156,6 +158,7 @@ CompareResult compareResult(
       testCase.markdown,
       inlineSyntaxes: inlineSyntaxes,
       blockSyntaxes: blockSyntaxes,
+      enableTagfilter: enabletagfilter,
     );
   } catch (err, stackTrace) {
     if (throwOnError) {

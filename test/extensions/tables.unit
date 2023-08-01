@@ -328,3 +328,51 @@ too | many | cells | here
 </tr>
 </tbody>
 </table>
+>>> issue #531
+| A | [B](url) | C |
+|---|---|
+|  a | b | c |
+<<<
+<p>| A | <a href="url">B</a> | C |
+|---|---|
+|  a | b | c |</p>
+>>> trailing whitespace after delimiter row
+| Name    | Value |
+| ---     | ---   |     
+| Foo     | bar   |
+<<<
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Foo</td>
+<td>bar</td>
+</tr>
+</tbody>
+</table>
+>>> can interrupt a paragraph
+paragraph
+foo | bar
+--- | ---
+baz | bim
+<<<
+<p>paragraph</p>
+<table>
+<thead>
+<tr>
+<th>foo</th>
+<th>bar</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>baz</td>
+<td>bim</td>
+</tr>
+</tbody>
+</table>

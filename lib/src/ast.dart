@@ -20,6 +20,7 @@ class Element implements Node {
   final Map<String, String> attributes;
   final Map<String, dynamic> tagOptions = {};
   String? generatedId;
+  String? footnoteLabel;
 
   /// Instantiates a [tag] Element with [children].
   Element(this.tag, this.children) : attributes = {};

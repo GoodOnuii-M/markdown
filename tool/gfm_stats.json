@@ -123,7 +123,7 @@
   "359": "strict"
  },
  "Disallowed Raw HTML (extension)": {
-  "653": "fail"
+  "652": "loose"
  },
  "Emphasis and strong emphasis": {
   "360": "strict",
@@ -309,6 +309,7 @@
   "117": "strict"
  },
  "Hard line breaks": {
+  "653": "strict",
   "654": "strict",
   "655": "strict",
   "656": "strict",
@@ -322,15 +323,14 @@
   "664": "strict",
   "665": "strict",
   "666": "strict",
-  "667": "strict",
-  "668": "strict"
+  "667": "strict"
  },
  "HTML blocks": {
-  "118": "loose",
+  "118": "strict",
   "119": "strict",
   "120": "strict",
   "121": "strict",
-  "122": "loose",
+  "122": "strict",
   "123": "strict",
   "124": "strict",
   "125": "strict",
@@ -345,14 +345,14 @@
   "134": "strict",
   "135": "strict",
   "136": "strict",
-  "137": "loose",
+  "137": "strict",
   "138": "strict",
   "139": "strict",
   "140": "strict",
   "141": "strict",
   "142": "strict",
-  "143": "loose",
-  "144": "loose",
+  "143": "strict",
+  "144": "strict",
   "145": "strict",
   "146": "strict",
   "147": "strict",
@@ -362,13 +362,13 @@
   "151": "strict",
   "152": "strict",
   "153": "strict",
-  "154": "loose",
+  "154": "strict",
   "155": "strict",
   "156": "strict",
-  "157": "loose",
+  "157": "strict",
   "158": "strict",
   "159": "strict",
-  "160": "loose"
+  "160": "strict"
  },
  "Images": {
   "580": "strict",
@@ -415,14 +415,14 @@
   "161": "strict",
   "162": "strict",
   "163": "strict",
-  "164": "fail",
+  "164": "strict",
   "165": "strict",
   "166": "strict",
   "167": "strict",
   "168": "strict",
-  "169": "fail",
-  "170": "fail",
-  "171": "fail",
+  "169": "strict",
+  "170": "strict",
+  "171": "strict",
   "172": "strict",
   "173": "strict",
   "174": "strict",
@@ -435,8 +435,8 @@
   "181": "strict",
   "182": "strict",
   "183": "strict",
-  "184": "fail",
-  "185": "fail",
+  "184": "strict",
+  "185": "strict",
   "186": "strict",
   "187": "strict",
   "188": "loose"
@@ -503,7 +503,7 @@
   "551": "strict",
   "552": "strict",
   "553": "strict",
-  "554": "fail",
+  "554": "strict",
   "555": "strict",
   "556": "strict",
   "557": "strict",
@@ -578,7 +578,7 @@
   "275": "strict",
   "276": "strict",
   "277": "strict",
-  "278": "loose"
+  "278": "strict"
  },
  "Lists": {
   "281": "strict",
@@ -588,8 +588,8 @@
   "285": "strict",
   "286": "strict",
   "287": "strict",
-  "288": "loose",
-  "289": "loose",
+  "288": "strict",
+  "289": "strict",
   "290": "strict",
   "291": "strict",
   "292": "strict",
@@ -597,7 +597,7 @@
   "294": "strict",
   "295": "strict",
   "296": "strict",
-  "297": "loose",
+  "297": "strict",
   "298": "strict",
   "299": "strict",
   "300": "strict",
@@ -634,15 +634,14 @@
   "641": "strict",
   "642": "strict",
   "643": "strict",
-  "644": "strict",
-  "645": "strict",
+  "644": "loose",
+  "645": "loose",
   "646": "strict",
   "647": "strict",
   "648": "strict",
   "649": "strict",
   "650": "strict",
-  "651": "strict",
-  "652": "strict"
+  "651": "strict"
  },
  "Setext headings": {
   "50": "strict",
@@ -658,7 +657,7 @@
   "60": "strict",
   "61": "strict",
   "62": "strict",
-  "63": "fail",
+  "63": "strict",
   "64": "strict",
   "65": "strict",
   "66": "strict",
@@ -674,8 +673,8 @@
   "76": "strict"
  },
  "Soft line breaks": {
-  "669": "strict",
-  "670": "strict"
+  "668": "strict",
+  "669": "strict"
  },
  "Strikethrough (extension)": {
   "491": "strict",
@@ -705,9 +704,9 @@
   "11": "strict"
  },
  "Textual content": {
+  "670": "strict",
   "671": "strict",
-  "672": "strict",
-  "673": "strict"
+  "672": "strict"
  },
  "Thematic breaks": {
   "13": "strict",

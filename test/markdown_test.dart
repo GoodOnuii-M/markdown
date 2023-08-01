@@ -2,6 +2,9 @@
 // for details. All rights reserved. Use of this source code is governed by a
 // BSD-style license that can be found in the LICENSE file.
 
+@TestOn('vm')
+library;
+
 import 'package:markdown/markdown.dart';
 import 'package:test/test.dart';
 
@@ -39,6 +42,10 @@ void main() async {
     'extensions/unordered_list_with_checkboxes.unit',
     blockSyntaxes: [const UnorderedListWithCheckboxSyntax()],
   );
+  testFile(
+    'extensions/autolink_extension.unit',
+    inlineSyntaxes: [AutolinkExtensionSyntax()],
+  );
 
   // Inline syntax extensions
   testFile(
@@ -52,6 +59,10 @@ void main() async {
   testFile(
     'extensions/strikethrough.unit',
     inlineSyntaxes: [StrikethroughSyntax()],
+  );
+  testFile(
+    'extensions/footnote_block.unit',
+    blockSyntaxes: [const FootnoteDefSyntax()],
   );
 
   testDirectory('common_mark');

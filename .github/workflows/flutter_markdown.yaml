@@ -19,20 +19,20 @@ jobs:
 
     steps:
       - name: clone dart-lang/markdown
-        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
+        uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9
         with:
           repository: dart-lang/markdown
           path: markdown
 
       - name: clone flutter/packages
-        uses: actions/checkout@2541b1294d2704b0964813337f33b291d3f8596b
+        uses: actions/checkout@c85c95e3d7251135ab7dc9ce3241c5835cc595a9
         with:
           repository: flutter/packages
           path: flutter_packages
 
       # Install the Flutter SDK using the subosito/flutter-action GitHub action.
       - name: install the flutter sdk
-        uses: subosito/flutter-action@dbf1fa04f4d2e52c33185153d06cdb5443aa189d
+        uses: subosito/flutter-action@48cafc24713cca54bbe03cdc3a423187d413aafa
         with:
           channel: 'beta'
       

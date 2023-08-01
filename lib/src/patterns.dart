@@ -73,7 +73,11 @@ final listPattern =
 
 /// A line of hyphens separated by at least one pipe.
 final tablePattern = RegExp(
-    r'^[ ]{0,3}\|?([ \t]*:?\-+:?[ \t]*\|)+([ \t]|[ \t]*:?\-+:?[ \t]*)?$');
+    r'^[ ]{0,3}\|?([ \t]*:?\-+:?[ \t]*\|[ \t]*)+([ \t]|[ \t]*:?\-+:?[ \t]*)?$');
+
+/// A line starting with `[^` and contains with `]:`, but without special chars
+/// (`\] \r\n\x00\t`) between. Same as [GFM](cmark-gfm/src/scanners.re:318).
+final footnotePattern = RegExp(r'(^[ ]{0,3})\[\^([^\] \r\n\x00\t]+)\]:[ \t]*');
 
 /// A pattern which should never be used. It just satisfies non-nullability of
 /// pattern fields.
@@ -180,3 +184,6 @@ final vocaStrongCodeLongPattern =
     RegExp(r'\*\*(n|ad|v|a|\?|[a-zA-Z]){1,5}\*\*([\w\s].*)');
 final vocaStrongCodeTextPattern =
     RegExp(r'(\*\*[a-zA-Z]{1,5}\*\*)([\wㄱ-ㅎ가-힣,.$()<>?:\\\+;&~! \n\r]+)');
+
+/// A line starts with `[`.
+final linkReferenceDefinitionPattern = RegExp(r'^[ ]{0,3}\[');
